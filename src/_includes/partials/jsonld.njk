@@ -1,0 +1,43 @@
+{# JSON-LD structured data. Organization/LocalBusiness on home; BlogPosting on posts. #}
+{%- if jsonldType == "post" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ title | dump | safe }},
+  "datePublished": "{{ page.date | isoDate }}",
+  "dateModified": "{{ page.date | isoDate }}",
+  "image": "{{ (featuredImage or settings.seo.shareImage) | absoluteUrl(settings.url) }}",
+  "author": { "@type": "Organization", "name": {{ settings.siteTitle | dump | safe }} },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ settings.siteTitle | dump | safe }},
+    "logo": { "@type": "ImageObject", "url": "{{ settings.logo | absoluteUrl(settings.url) }}" }
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absoluteUrl(settings.url) }}" }
+}
+</script>
+{%- else -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {% if settings.contact.address %}"LocalBusiness"{% else %}"Organization"{% endif %},
+  "name": {{ settings.siteTitle | dump | safe }},
+  "url": "{{ settings.url }}",
+  "logo": "{{ settings.logo | absoluteUrl(settings.url) }}",
+  "description": {{ settings.seo.description | dump | safe }}
+  {%- if settings.contact.phone %},
+  "telephone": {{ settings.contact.phone | dump | safe }}
+  {%- endif %}
+  {%- if settings.contact.email %},
+  "email": {{ settings.contact.email | dump | safe }}
+  {%- endif %}
+  {%- if settings.contact.address %},
+  "address": { "@type": "PostalAddress", "streetAddress": {{ settings.contact.address | dump | safe }} }
+  {%- endif %}
+  {%- if settings.social and settings.social.length %},
+  "sameAs": [{% for s in settings.social %}{{ s.url | dump | safe }}{% if not loop.last %}, {% endif %}{% endfor %}]
+  {%- endif %}
+}
+</script>
+{%- endif -%}

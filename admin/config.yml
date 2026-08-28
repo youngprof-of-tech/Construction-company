@@ -1,0 +1,346 @@
+# ---------------------------------------------------------------------------
+# Sveltia CMS configuration (Decap-compatible schema)
+#
+# Backend: GitHub, authenticated through Netlify's built-in OAuth provider.
+# No `base_url` is needed while using Netlify OAuth. If you ever leave Netlify,
+# see the README for switching to the sveltia-cms-auth Cloudflare Worker and
+# adding a `base_url:` line here.
+# ---------------------------------------------------------------------------
+backend:
+  name: github
+  repo: client-username/repo-name # TODO: set to "owner/repo" of the site's GitHub repo
+  branch: main
+  # Optional: nicer commit messages in the repo history.
+  commit_messages:
+    create: "content: create {{collection}} “{{slug}}”"
+    update: "content: update {{collection}} “{{slug}}”"
+    delete: "content: delete {{collection}} “{{slug}}”"
+    uploadMedia: "content: upload “{{path}}”"
+    deleteMedia: "content: delete “{{path}}”"
+
+# Editorial workflow (draft/review/publish) is optional. Uncomment to enable.
+# publish_mode: editorial_workflow
+
+# All uploaded images land in /uploads and are referenced as /uploads/<file>.
+media_folder: "uploads"
+public_folder: "/uploads"
+
+# Show a live preview link in the editor.
+site_url: https://example.netlify.app
+display_url: https://example.netlify.app
+logo_url: /assets/images/logo.png
+
+collections:
+  # -----------------------------------------------------------------------
+  # 1. SITE SETTINGS — singleton file, global brand + SEO + contact info.
+  # -----------------------------------------------------------------------
+  - name: settings
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: general
+        label: "General & SEO"
+        file: "src/_data/settings.json"
+        description: "Logo, brand info, contact details, social links, SEO defaults."
+        fields:
+          - { name: siteTitle, label: "Site Title", widget: string }
+          - { name: tagline, label: "Tagline", widget: string, required: false }
+          - name: logo
+            label: "Logo"
+            widget: image
+            required: false
+            media_library: { config: { max_file_size: 2097152 } }
+          - { name: logoAlt, label: "Logo alt text", widget: string, default: "Industryflow" }
+          - label: "Contact"
+            name: contact
+            widget: object
+            fields:
+              - { name: phone, label: "Phone", widget: string, required: false }
+              - { name: email, label: "Email", widget: string, required: false }
+              - { name: address, label: "Address", widget: text, required: false }
+          - label: "Social Links"
+            name: social
+            widget: list
+            required: false
+            summary: "{{fields.platform}}"
+            fields:
+              - name: platform
+                label: "Platform"
+                widget: select
+                options: ["facebook", "twitter", "linkedin", "instagram", "youtube"]
+              - { name: url, label: "URL", widget: string }
+          - label: "SEO Defaults"
+            name: seo
+            widget: object
+            fields:
+              - { name: title, label: "Default SEO title", widget: string }
+              - { name: description, label: "Default meta description", widget: text }
+              - name: shareImage
+                label: "Default social share image"
+                widget: image
+                required: false
+              - { name: shareImageAlt, label: "Share image alt text", widget: string, required: false }
+
+  # -----------------------------------------------------------------------
+  # 2. HOME PAGE — singleton file, one field group per section.
+  # -----------------------------------------------------------------------
+  - name: home
+    label: "Home Page"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: home
+        label: "Home Page Content"
+        file: "src/_data/home.json"
+        fields:
+          # -- SEO overrides -------------------------------------------------
+          - label: "SEO (this page)"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "SEO title", widget: string, required: false }
+              - { name: description, label: "Meta description", widget: text, required: false }
+
+          # -- Hero ----------------------------------------------------------
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow / welcome text", widget: string, required: false }
+              - { name: headline, label: "Headline", widget: string }
+              - { name: subtext, label: "Subtext", widget: text }
+              - { name: ctaLabel, label: "CTA button label", widget: string }
+              - { name: ctaUrl, label: "CTA button URL", widget: string }
+              - name: backgroundImage
+                label: "Background image"
+                widget: image
+              - { name: backgroundAlt, label: "Background alt text", widget: string }
+              - label: "Rotating cards"
+                name: cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: index, label: "Number label (e.g. 01)", widget: string }
+                  - { name: category, label: "Category", widget: string }
+                  - { name: title, label: "Title", widget: string }
+                  - { name: linkLabel, label: "Link label", widget: string, default: "What We Need" }
+                  - { name: linkUrl, label: "Link URL", widget: string, required: false, default: "#services" }
+
+          # -- Stats bar -----------------------------------------------------
+          - label: "Stats bar"
+            name: stats
+            widget: list
+            summary: "{{fields.value}} {{fields.label}}"
+            fields:
+              - { name: value, label: "Number (e.g. 15)", widget: number, value_type: int }
+              - { name: suffix, label: "Suffix (e.g. + or K+)", widget: string, required: false }
+              - { name: label, label: "Label", widget: string }
+
+          # -- About / Core Values ------------------------------------------
+          - label: "About / Core Values"
+            name: about
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, default: "Core Values" }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: body, label: "Body text", widget: text }
+              - { name: ctaLabel, label: "CTA label", widget: string, required: false }
+              - { name: ctaUrl, label: "CTA URL", widget: string, required: false }
+              - { name: image, label: "Image", widget: image }
+              - { name: imageAlt, label: "Image alt text", widget: string }
+              - { name: yearsValue, label: "Years of experience (number)", widget: number, value_type: int }
+              - { name: yearsLabel, label: "Years label", widget: string, default: "Years of Experience" }
+              - label: "Mission"
+                name: mission
+                widget: object
+                fields:
+                  - { name: title, label: "Title", widget: string, default: "Our Mission" }
+                  - { name: text, label: "Text", widget: text }
+              - label: "Vision"
+                name: vision
+                widget: object
+                fields:
+                  - { name: title, label: "Title", widget: string, default: "Our Vision" }
+                  - { name: text, label: "Text", widget: text }
+
+          # -- Services ------------------------------------------------------
+          - label: "Services section"
+            name: servicesSection
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, default: "Our Services" }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: intro, label: "Intro text", widget: text, required: false }
+              - { name: ctaLabel, label: "CTA label", widget: string, default: "View All Services" }
+              - { name: ctaUrl, label: "CTA URL", widget: string, default: "/services/" }
+              - name: backgroundImage
+                label: "Background image"
+                widget: image
+              - { name: backgroundAlt, label: "Background alt text", widget: string }
+              - label: "Service cards"
+                name: cards
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: icon, label: "Icon name", widget: string, hint: "e.g. solar, automotive, construction, aviation" }
+                  - { name: title, label: "Title", widget: string }
+                  - name: items
+                    label: "Checklist items"
+                    widget: list
+                    field: { name: item, label: "Item", widget: string }
+                  - { name: linkLabel, label: "Link label", widget: string, default: "Read More" }
+                  - { name: linkUrl, label: "Link URL", widget: string, required: false }
+
+          # -- Work Process --------------------------------------------------
+          - label: "Work Process"
+            name: process
+            widget: object
+            fields:
+              - { name: heading, label: "Heading", widget: string, default: "Work Process" }
+              - label: "Steps"
+                name: steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: number, label: "Step number (e.g. 01)", widget: string }
+                  - { name: title, label: "Title", widget: string }
+                  - { name: text, label: "Text", widget: text }
+
+          # -- Industries Reach ---------------------------------------------
+          - label: "Industries Reach"
+            name: industries
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: officeTitle, label: "Office block title", widget: string, required: false }
+              - { name: officeText, label: "Office block text", widget: text, required: false }
+              - { name: mapImage, label: "World map image", widget: image }
+              - { name: mapAlt, label: "Map alt text", widget: string, default: "Global office locations" }
+              - { name: statValue, label: "Stat value (e.g. 1000)", widget: number, value_type: int }
+              - { name: statSuffix, label: "Stat suffix", widget: string, default: "+" }
+              - { name: statLabel, label: "Stat label", widget: string }
+
+          # -- Featured CTA banner ------------------------------------------
+          - label: "Featured CTA banner"
+            name: ctaBanner
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: text, label: "Text", widget: text, required: false }
+              - { name: image, label: "Background image", widget: image }
+              - { name: imageAlt, label: "Image alt text", widget: string }
+              - { name: buttonLabel, label: "Submit button label", widget: string, default: "Get a Free Quote" }
+              - label: "Service dropdown options"
+                name: serviceOptions
+                widget: list
+                field: { name: option, label: "Option", widget: string }
+
+          # -- Testimonials --------------------------------------------------
+          - label: "Testimonials"
+            name: testimonials
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string }
+              - label: "Items"
+                name: items
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { name: name, label: "Client name", widget: string }
+                  - { name: role, label: "Role / company", widget: string }
+                  - { name: photo, label: "Photo", widget: image, required: false }
+                  - { name: rating, label: "Star rating (1–5)", widget: number, value_type: int, min: 1, max: 5, default: 5 }
+                  - { name: quote, label: "Quote", widget: text }
+
+          # -- Blog preview heading -----------------------------------------
+          - label: "Blog preview"
+            name: blog
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: heading, label: "Heading", widget: string }
+              - { name: count, label: "How many posts to show", widget: number, value_type: int, default: 4 }
+
+          # -- Newsletter / final CTA ---------------------------------------
+          - label: "Newsletter / Final CTA"
+            name: newsletter
+            widget: object
+            fields:
+              - { name: heading, label: "Heading", widget: string }
+              - { name: text, label: "Text", widget: text, required: false }
+              - { name: buttonLabel, label: "Button label", widget: string, default: "Subscribe" }
+              - { name: image, label: "Background image", widget: image, required: false }
+              - { name: imageAlt, label: "Image alt text", widget: string, required: false }
+
+  # -----------------------------------------------------------------------
+  # 3. BLOG POSTS — folder collection.
+  # -----------------------------------------------------------------------
+  - name: posts
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}/"
+    summary: "{{title}} — {{date | date('yyyy-MM-dd')}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: date, label: "Date", widget: datetime }
+      - { name: category, label: "Category", widget: string }
+      - name: featuredImage
+        label: "Featured image"
+        widget: image
+      - { name: featuredImageAlt, label: "Featured image alt text", widget: string }
+      - { name: excerpt, label: "Excerpt", widget: text }
+      - label: "SEO overrides"
+        name: seo
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: title, label: "SEO title", widget: string, required: false }
+          - { name: description, label: "Meta description", widget: text, required: false }
+      - { name: body, label: "Body", widget: markdown }
+
+  # -----------------------------------------------------------------------
+  # 4. SERVICES — folder collection (each service gets its own page).
+  # -----------------------------------------------------------------------
+  - name: services
+    label: "Services"
+    label_singular: "Service"
+    folder: "src/services"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "services/{{slug}}/"
+    summary: "{{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: order, label: "Order", widget: number, value_type: int, default: 0 }
+      - { name: icon, label: "Icon name", widget: string, hint: "e.g. solar, automotive, construction, aviation" }
+      - { name: excerpt, label: "Short description", widget: text }
+      - name: image
+        label: "Image"
+        widget: image
+      - { name: imageAlt, label: "Image alt text", widget: string }
+      - name: features
+        label: "Features"
+        widget: list
+        field: { name: feature, label: "Feature", widget: string }
+      - label: "SEO overrides"
+        name: seo
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: title, label: "SEO title", widget: string, required: false }
+          - { name: description, label: "Meta description", widget: text, required: false }
+      - { name: body, label: "Body", widget: markdown }

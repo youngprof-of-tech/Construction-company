@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: About Us
+permalink: /about/
+seo:
+  description: "Learn about Industryflow — a trusted global partner delivering manufacturing, construction, and industrial services with 25+ years of expertise."
+---
+{% from "partials/icons.njk" import icon %}
+{% set a = home.about %}
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <p class="crumbs"><a href="/">Home</a> &rsaquo; {{ title }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__media reveal">
+        <img src="{{ a.image }}" alt="{{ a.imageAlt }}" loading="lazy" width="560" height="620" />
+        <div class="about__years">
+          <div class="num" data-count="{{ a.yearsValue }}">0</div>
+          <div class="lbl">{{ a.yearsLabel }}</div>
+        </div>
+      </div>
+      <div class="about__text reveal">
+        <span class="eyebrow">{{ a.eyebrow }}</span>
+        <h2 class="section-heading">{{ a.heading }}</h2>
+        <p class="about__body">{{ a.body }}</p>
+        <div class="mv-cards">
+          <div class="mv-card">
+            <span class="mv-card__icon">{{ icon('target', 20) }}</span>
+            <h3>{{ a.mission.title }}</h3><p>{{ a.mission.text }}</p>
+          </div>
+          <div class="mv-card">
+            <span class="mv-card__icon">{{ icon('bulb', 20) }}</span>
+            <h3>{{ a.vision.title }}</h3><p>{{ a.vision.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "sections/stats.njk" %}
+{% include "sections/process.njk" %}
+{% include "sections/cta.njk" %}

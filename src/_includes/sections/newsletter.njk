@@ -1,0 +1,25 @@
+{% from "partials/icons.njk" import icon %}
+{% set n = home.newsletter %}
+<section class="section" aria-label="Newsletter">
+  <div class="container">
+    <div class="newsletter reveal">
+      <div class="newsletter__inner">
+        <div>
+          <h2>{{ n.heading }}</h2>
+          {% if n.text %}<p>{{ n.text }}</p>{% endif %}
+        </div>
+        {# To go live with Netlify Forms: add data-netlify="true" to this form. #}
+        <form class="newsletter__formwrap form" name="newsletter" method="POST" action="/thank-you/" data-validate novalidate>
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p class="visually-hidden" aria-hidden="true"><label>Leave blank: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+          <div class="newsletter__form">
+            <label class="visually-hidden" for="nl-email">Email address</label>
+            <input id="nl-email" name="email" type="email" placeholder="Enter your email" data-required autocomplete="email" />
+            <button type="submit" class="btn btn--dark" disabled>{{ n.buttonLabel }} <span class="btn__icon">{{ icon('arrow-right', 14) }}</span></button>
+          </div>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

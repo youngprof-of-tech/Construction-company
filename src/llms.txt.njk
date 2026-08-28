@@ -1,0 +1,44 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+{# Plain-text output for LLM/AI search crawlers (https://llmstxt.org/).
+   Every dynamic value is piped through `| safe` because this isn't HTML —
+   Nunjucks' default autoescaping would otherwise turn apostrophes in post
+   titles into "&#39;" etc. #}
+# {{ settings.siteTitle | safe }}
+
+> {{ settings.seo.description | safe }}
+
+{{ settings.siteTitle | safe }} provides {{ home.servicesSection.cards | length }} core service lines — {% for c in home.servicesSection.cards %}{{ c.title | safe }}{% if not loop.last %}, {% endif %}{% endfor %} — for industrial, manufacturing, and construction clients. Founded on {{ home.about.yearsValue }}+ years of experience, with {{ home.stats[0].value }}{{ home.stats[0].suffix | safe }} industry awards, {{ home.stats[1].value }}{{ home.stats[1].suffix | safe }} clients served, and {{ home.industries.statValue }}{{ home.industries.statSuffix | safe }} {{ home.industries.statLabel | lower | safe }}.
+
+## Company
+
+- [Home]({{ "/" | absoluteUrl(settings.url) }}): Overview, services, process, and client testimonials.
+- [About]({{ "/about/" | absoluteUrl(settings.url) }}): Company mission, vision, and track record.
+- [Contact]({{ "/contact/" | absoluteUrl(settings.url) }}): Get a free quote — phone {{ settings.contact.phone | safe }}, email {{ settings.contact.email | safe }}.
+
+## Services
+
+{% for service in collections.services -%}
+- [{{ service.data.title | safe }}]({{ service.url | absoluteUrl(settings.url) }}): {{ service.data.excerpt | safe }}
+{% endfor -%}
+{% if collections.services.length == 0 -%}
+{% for c in home.servicesSection.cards -%}
+- {{ c.title | safe }}: {{ c.items | join(", ") | safe }}
+{% endfor -%}
+{% endif %}
+- [All services]({{ "/services/" | absoluteUrl(settings.url) }})
+
+## Articles
+
+{% for post in collections.posts -%}
+- [{{ post.data.title | safe }}]({{ post.url | absoluteUrl(settings.url) }}): {{ post.data.excerpt | safe }}
+{% endfor -%}
+- [All articles]({{ "/blog/" | absoluteUrl(settings.url) }})
+
+## Contact
+
+- Phone: {{ settings.contact.phone | safe }}
+- Email: {{ settings.contact.email | safe }}
+- Address: {{ settings.contact.address | safe }}

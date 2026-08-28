@@ -1,0 +1,54 @@
+{% from "partials/icons.njk" import icon %}
+{% set h = home.hero %}
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="hero__bg">
+    <img src="{{ h.backgroundImage }}" alt="{{ h.backgroundAlt }}" fetchpriority="high" width="1920" height="900" />
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__grid">
+      <div class="hero__inner reveal">
+        {% if h.eyebrow %}<span class="eyebrow hero__eyebrow">{{ h.eyebrow }}</span>{% endif %}
+        <h1>{{ h.headline }}</h1>
+        <p class="hero__subtext">{{ h.subtext }}</p>
+        <a class="btn btn--accent" href="{{ h.ctaUrl }}">{{ h.ctaLabel }} <span class="btn__icon">{{ icon('arrow-right', 14) }}</span></a>
+      </div>
+
+      {% if h.cards and h.cards.length %}
+      <div class="hero-cards" aria-label="Featured capabilities">
+        <div class="hero-cards__viewport">
+          {# A <div> here, not <article> — <article>'s implicit ARIA role
+             only permits a short allow-list of role overrides and "group"
+             isn't one of them; <div>'s implicit "generic" role has no such
+             restriction, which is the standard pattern for ARIA carousel
+             slides. #}
+          {% for c in h.cards %}
+          <div class="hero-card {% if loop.first %}is-active{% endif %}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ h.cards.length }}">
+            <div class="hero-card__head">
+              <span class="hero-card__cat">{{ c.index | int }}. {{ c.category }}</span>
+              <span class="hero-card__index">{{ c.index }} <span class="hero-card__index-sep">/ {% if h.cards.length < 10 %}0{% endif %}{{ h.cards.length }}</span></span>
+            </div>
+            <h2 class="hero-card__title">{{ c.title }}</h2>
+            <a class="hero-card__link" href="{{ c.linkUrl or '#services' }}">{{ c.linkLabel }} <span class="arrow">{{ icon('arrow-right', 14) }}</span></a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if h.cards and h.cards.length %}
+  <div class="container">
+    <div class="hero__controls">
+      <button class="carousel-btn carousel-btn--prev" aria-label="Previous slide">{{ icon('chevron-left', 18) }}</button>
+      <button class="carousel-btn carousel-btn--next" aria-label="Next slide">{{ icon('chevron-right', 18) }}</button>
+      <div class="hero__dots" role="tablist" aria-label="Slides">
+        {% for c in h.cards %}
+        <button class="dot {% if loop.first %}is-active{% endif %}" role="tab" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-label="Slide {{ loop.index }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>

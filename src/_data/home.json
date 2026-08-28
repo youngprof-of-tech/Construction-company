@@ -1,0 +1,108 @@
+{
+  "seo": {
+    "title": "Industryflow — Innovative Manufacturing & Construction Solutions",
+    "description": "High-quality manufacturing, construction, and industrial services tailored to your business needs — delivering efficiency, safety, and sustainability."
+  },
+  "hero": {
+    "eyebrow": "Welcome to Industryflow",
+    "headline": "Innovative Manufacturing & Construction Solutions",
+    "subtext": "We provide high-quality manufacturing, construction, and industrial services tailored to your business needs. With years of expertise, we deliver innovative solutions ensuring efficiency, safety, and sustainability.",
+    "ctaLabel": "Get Your Free Quote",
+    "ctaUrl": "/contact/",
+    "backgroundImage": "/assets/images/hero-placeholder.jpg",
+    "backgroundAlt": "Industrial power plant with cooling towers at dusk",
+    "cards": [
+      { "index": "01", "category": "Manufacturing", "title": "Customized manufacturing solutions.", "linkLabel": "What We Need", "linkUrl": "#services" },
+      { "index": "02", "category": "Construction", "title": "End-to-end project management.", "linkLabel": "What We Need", "linkUrl": "#services" },
+      { "index": "03", "category": "Aviation", "title": "Precision aerospace engineering.", "linkLabel": "What We Need", "linkUrl": "#services" }
+    ]
+  },
+  "stats": [
+    { "value": 15, "suffix": "+", "label": "Awards" },
+    { "value": 1, "suffix": "K+", "label": "Happy Clients" },
+    { "value": 10, "suffix": "+", "label": "Years of Expertise" }
+  ],
+  "about": {
+    "eyebrow": "Core Values",
+    "heading": "Trusted Global Partner For Manufacturing And Construction",
+    "body": "With a wealth of experience and a strong commitment to excellence, we have consistently built a reputation as a trusted partner for businesses worldwide.",
+    "ctaLabel": "Get Your Free Quote",
+    "ctaUrl": "/contact/",
+    "image": "/assets/images/about-placeholder.jpg",
+    "imageAlt": "Two welders in protective gear working with sparks",
+    "yearsValue": 25,
+    "yearsLabel": "Years of Experience",
+    "mission": {
+      "title": "Our Mission",
+      "text": "Empowering businesses with high-quality services for sustainable growth."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text": "To lead globally in industrial services, with new standards."
+    }
+  },
+  "servicesSection": {
+    "eyebrow": "Our Services",
+    "heading": "Tailored Solutions For Industry Growth",
+    "intro": "We offer a comprehensive range of services tailored to meet the unique needs.",
+    "ctaLabel": "View All Services",
+    "ctaUrl": "/services/",
+    "backgroundImage": "/assets/images/services-bg-placeholder.jpg",
+    "backgroundAlt": "Interior of an industrial plant with pipework",
+    "cards": [
+      { "icon": "solar", "title": "Solar Energy", "items": ["Solar Panel Installation", "Energy Storage", "System Maintenance"], "linkLabel": "Read More", "linkUrl": "/services/" },
+      { "icon": "automotive", "title": "Automotive", "items": ["Vehicle Production", "Parts Fabrication", "Assembly Lines"], "linkLabel": "Read More", "linkUrl": "/services/" },
+      { "icon": "construction", "title": "Construction", "items": ["Project Management", "Building Design", "Renovation Services"], "linkLabel": "Read More", "linkUrl": "/services/" },
+      { "icon": "aviation", "title": "Aviation", "items": ["Wing Components", "Precision Engineering", "Quality Control"], "linkLabel": "Read More", "linkUrl": "/services/" }
+    ]
+  },
+  "process": {
+    "heading": "Work Process",
+    "steps": [
+      { "number": "01", "title": "Shaping the Foundation of Success", "text": "We begin by understanding your goals, mapping requirements, and setting a clear plan for delivery." },
+      { "number": "02", "title": "Transforming Ideas Into Tangible Results", "text": "Our teams execute with precision — building, fabricating, and installing to exacting standards." },
+      { "number": "03", "title": "Commitment to Quality and Continued Growth", "text": "We deliver, refine, and support so your systems keep performing well into the future." }
+    ]
+  },
+  "industries": {
+    "eyebrow": "Global Reach",
+    "heading": "Our Services Reach Industries Worldwide",
+    "officeTitle": "Chicago Office",
+    "officeText": "24 Foundry Avenue, Suite 500\nChicago, IL 60601\n+1 (555) 010-2340",
+    "mapImage": "/assets/images/world-map-placeholder.jpg",
+    "mapAlt": "World map showing global office locations",
+    "statValue": 1000,
+    "statSuffix": "+",
+    "statLabel": "Projects delivered across 20+ countries"
+  },
+  "ctaBanner": {
+    "eyebrow": "Aerospace Tech Upgrade",
+    "heading": "Get Your Free Quote Today",
+    "text": "Tell us about your project and our engineers will get back to you within one business day.",
+    "image": "/assets/images/cta-placeholder.jpg",
+    "imageAlt": "Close-up of aerospace engine machinery",
+    "buttonLabel": "Get a Free Quote",
+    "serviceOptions": ["Manufacturing", "Construction", "Solar Energy", "Automotive", "Aviation"]
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "heading": "Our Clients Trust Us To Deliver Exceptional Results",
+    "items": [
+      { "name": "Jason Beck", "role": "Operations Director, NorthStar Manufacturing", "photo": "", "rating": 5, "quote": "Industryflow delivered our production line ahead of schedule and under budget. Their attention to safety and quality was outstanding from start to finish." },
+      { "name": "Sarah Jensen", "role": "Project Lead, Meridian Construction", "photo": "", "rating": 5, "quote": "The team's engineering expertise turned a complex renovation into a smooth, predictable process. We would happily work with them again." },
+      { "name": "Daniel Rowe", "role": "CEO, Vertex Energy", "photo": "", "rating": 5, "quote": "From solar installation to ongoing maintenance, Industryflow has been a dependable partner that consistently exceeds expectations." }
+    ]
+  },
+  "blog": {
+    "eyebrow": "Recent News",
+    "heading": "Articles & Blog Posts With Useful Information",
+    "count": 4
+  },
+  "newsletter": {
+    "heading": "Transform Your Space with Us!",
+    "text": "Subscribe for industry insights, project updates, and expert tips — straight to your inbox.",
+    "buttonLabel": "Subscribe",
+    "image": "/assets/images/newsletter-placeholder.jpg",
+    "imageAlt": "Industrial machinery gears close-up"
+  }
+}

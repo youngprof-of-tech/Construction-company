@@ -1,0 +1,14 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# AI answer-engine / LLM crawlers (ChatGPT, Claude, Perplexity, Google-Extended,
+# etc.) are covered by the wildcard rule above — nothing further to block.
+# A structured, LLM-readable summary of this site lives at /llms.txt
+# (see https://llmstxt.org/).
+
+Sitemap: {{ "/sitemap.xml" | absoluteUrl(settings.url) }}

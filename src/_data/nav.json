@@ -1,0 +1,31 @@
+{
+  "primary": [
+    { "label": "Home", "url": "/" },
+    { "label": "About", "url": "/about/" },
+    { "label": "Services", "url": "/services/" },
+    { "label": "Blog", "url": "/blog/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "cta": { "label": "Get Your Free Quote", "url": "/contact/" },
+  "footer": {
+    "pages": [
+      { "label": "Home", "url": "/" },
+      { "label": "About", "url": "/about/" },
+      { "label": "Services", "url": "/services/" },
+      { "label": "Blog", "url": "/blog/" },
+      { "label": "Contact", "url": "/contact/" }
+    ],
+    "subPages": [
+      { "label": "Manufacturing", "url": "/services/" },
+      { "label": "Construction", "url": "/services/" },
+      { "label": "Aviation", "url": "/services/" },
+      { "label": "Solar Energy", "url": "/services/" }
+    ],
+    "utility": [
+      { "label": "Style Guide", "url": "#" },
+      { "label": "Licenses", "url": "#" },
+      { "label": "Changelog", "url": "#" },
+      { "label": "404 Page", "url": "/404/" }
+    ]
+  }
+}

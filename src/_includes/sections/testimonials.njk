@@ -1,0 +1,46 @@
+{% from "partials/icons.njk" import icon %}
+{% set t = home.testimonials %}
+{% if t.items and t.items.length %}
+<section class="section section--light testimonials" aria-label="Testimonials">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:640px;margin-inline:auto;">
+      {% if t.eyebrow %}<span class="eyebrow">{{ t.eyebrow }}</span>{% endif %}
+      <h2 class="section-heading" style="max-width:none;">{{ t.heading }}</h2>
+    </div>
+
+    <div class="testimonials__viewport reveal" style="margin-top:var(--space-6);">
+      <div class="testimonials__track">
+        {% for item in t.items %}
+        <div class="testimonial" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ t.items.length }}" {% if not loop.first %}aria-hidden="true"{% endif %}>
+          <blockquote class="testimonial__card">
+            {# role="img" so the group of star icons can carry an accessible
+               name — a plain <div>'s implicit role ("generic") disallows
+               aria-label entirely. #}
+            <div class="testimonial__stars" role="img" aria-label="{{ item.rating }} out of 5 stars">
+              {% for n in range(0, item.rating) %}{{ icon('star', 16) }}{% endfor %}
+            </div>
+            <p class="testimonial__quote">“{{ item.quote }}”</p>
+            <footer class="testimonial__person">
+              {% if item.photo %}
+              <img class="testimonial__avatar" src="{{ item.photo }}" alt="{{ item.name }}" loading="lazy" width="48" height="48" />
+              {% else %}
+              <span class="testimonial__avatar" aria-hidden="true">{{ item.name | first }}</span>
+              {% endif %}
+              <span>
+                <span class="testimonial__name">{{ item.name }}</span><br />
+                <span class="testimonial__role">{{ item.role }}</span>
+              </span>
+            </footer>
+          </blockquote>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="testimonials__controls">
+      <button class="carousel-btn testimonials__prev" aria-label="Previous testimonial">{{ icon('chevron-left', 18) }}</button>
+      <button class="carousel-btn testimonials__next" aria-label="Next testimonial">{{ icon('chevron-right', 18) }}</button>
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,24 @@
+{
+  "siteTitle": "Industryflow",
+  "tagline": "Innovative Manufacturing & Construction Solutions",
+  "url": "https://example.netlify.app",
+  "logo": "/assets/images/logo.png",
+  "logoAlt": "Industryflow",
+  "contact": {
+    "phone": "+1 (555) 010-2340",
+    "email": "hello@industryflow.com",
+    "address": "24 Foundry Avenue, Suite 500, Chicago, IL 60601"
+  },
+  "social": [
+    { "platform": "facebook", "url": "https://facebook.com" },
+    { "platform": "twitter", "url": "https://twitter.com" },
+    { "platform": "linkedin", "url": "https://linkedin.com" },
+    { "platform": "instagram", "url": "https://instagram.com" }
+  ],
+  "seo": {
+    "title": "Industryflow — Innovative Manufacturing & Construction Solutions",
+    "description": "Industryflow provides high-quality manufacturing, construction, and industrial services tailored to your business needs — delivering efficiency, safety, and sustainability.",
+    "shareImage": "/assets/images/hero-placeholder.jpg",
+    "shareImageAlt": "Industrial plant at dusk with cooling towers"
+  }
+}

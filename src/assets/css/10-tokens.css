@@ -1,0 +1,79 @@
+/* =========================================================================
+   Design tokens — edit these to re-theme the whole site.
+   Pulled from the Industryflow reference: vivid orange accent, charcoal
+   neutrals, moody teal-graded industrial photography.
+   ========================================================================= */
+:root {
+  /* Brand + neutrals
+     --color-accent is the vivid brand orange — reserve it for LARGE text
+     (>=24px / 18.66px bold), icons, and non-text UI (focus rings, dots,
+     underlines), where WCAG only requires 3:1. Its contrast on white is
+     ~3.4:1, which fails the 4.5:1 required for small/body text.
+     --color-accent-dark is the button/small-text-safe shade: ~5:1 on white
+     and on dark backgrounds, verified against WCAG AA. Use it for eyebrows,
+     text links, button backgrounds, and any orange text under 24px. */
+  --color-accent: #f15a24;
+  --color-accent-dark: #c6431a;
+  --color-accent-darker: #a8380f; /* hover state for accent-dark buttons/links */
+  --color-accent-soft: #fdece4;
+  --color-dark: #1b1f24;      /* near-black charcoal for dark sections/headings */
+  --color-darker: #14171b;
+  --color-body: #4a4f57;      /* body copy on light */
+  --color-muted: #6b7280;     /* AA-safe on white at small sizes (~4.8:1) */
+  --color-white: #ffffff;
+  --color-light: #f5f5f5;     /* alternate section background */
+  --color-line: #e6e8eb;      /* hairline borders */
+  --color-star: #d97b06;      /* rating stars — decorative, paired with aria-label */
+
+  /* Typography */
+  --font-heading: "Barlow", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --fs-900: clamp(2.6rem, 5.2vw, 4.4rem);   /* hero headline */
+  --fs-800: clamp(2rem, 3.6vw, 3rem);       /* section headings */
+  --fs-700: clamp(1.5rem, 2.4vw, 2rem);
+  --fs-600: 1.35rem;
+  --fs-500: 1.125rem;
+  --fs-400: 1rem;            /* body */
+  --fs-300: 0.9375rem;
+  --fs-200: 0.8125rem;       /* eyebrows / labels */
+
+  --lh-tight: 1.05;
+  --lh-heading: 1.15;
+  --lh-body: 1.65;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --section-pad: clamp(3.5rem, 8vw, 6rem);
+  --container: 1200px;
+  --container-pad: clamp(1rem, 4vw, 2.5rem);
+
+  /* Shape + shadow */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 2px 8px rgba(20, 23, 27, 0.06);
+  --shadow-md: 0 10px 30px rgba(20, 23, 27, 0.12);
+  --shadow-lg: 0 24px 60px rgba(20, 23, 27, 0.18);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.4s;
+
+  --header-h: 76px;
+}

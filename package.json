@@ -1,0 +1,20 @@
+{
+  "name": "industryflow",
+  "version": "1.0.0",
+  "description": "Industryflow — industrial / manufacturing / construction marketing site built with Eleventy + Sveltia CMS.",
+  "license": "MIT",
+  "scripts": {
+    "start": "eleventy --serve --quiet",
+    "dev": "eleventy --serve --quiet",
+    "build": "cross-env ELEVENTY_ENV=production eleventy",
+    "clean": "rimraf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "clean-css": "^5.3.3",
+    "cross-env": "^7.0.3",
+    "luxon": "^3.5.0",
+    "rimraf": "^6.0.1",
+    "terser": "^5.36.0"
+  }
+}

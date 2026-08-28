@@ -1,0 +1,30 @@
+{% from "partials/icons.njk" import icon %}
+<a class="skip-link" href="#main">Skip to content</a>
+{# Every page has a dark band (hero photo or page-hero) directly under the
+   header, so the header always starts in "overlay" mode (light logo/links)
+   and switches to the light/dark-on-white treatment once .is-stuck kicks in. #}
+<header class="site-header site-header--overlay">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="{{ settings.siteTitle }} home">
+      <img class="brand__logo brand__logo--dark" src="{{ settings.logo }}" alt="{{ settings.logoAlt or settings.siteTitle }}" width="150" height="30" />
+      <img class="brand__logo brand__logo--light" src="/assets/images/logo-light.png" alt="" aria-hidden="true" width="150" height="30" />
+    </a>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <button class="nav-close" aria-label="Close menu">{{ icon('close', 20) }}</button>
+      <ul class="nav__list">
+        {% for item in nav.primary %}
+        <li>
+          <a class="nav__link" href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn--accent" href="{{ nav.cta.url }}">{{ nav.cta.label }}</a>
+    </nav>
+  </div>
+</header>
+<div class="nav-backdrop" aria-hidden="true"></div>

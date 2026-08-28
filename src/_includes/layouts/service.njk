@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials/icons.njk" import icon as ic %}
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <p class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/services/">Services</a> &rsaquo; {{ title }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="about__grid" style="align-items:start;">
+      <div class="reveal">
+        {% if image %}<img src="{{ image }}" alt="{{ imageAlt }}" loading="lazy" width="560" height="420" style="border-radius:var(--radius-md);" />{% endif %}
+      </div>
+      <div class="reveal">
+        {% if icon %}<span class="mv-card__icon" style="margin-bottom:var(--space-3);">{{ ic(icon, 22) }}</span>{% endif %}
+        <p class="lead">{{ excerpt }}</p>
+        <div class="prose" style="margin-top:var(--space-4);">{{ content | safe }}</div>
+        {% if features and features.length %}
+        <ul class="service-card__list" style="margin-top:var(--space-4);">
+          {% for f in features %}<li style="color:var(--color-body);">{{ ic('check', 14) }} {{ f }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <a class="btn btn--accent" href="/contact/" style="margin-top:var(--space-6);">Request a Quote {{ ic('arrow-right', 14) }}</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+{% from "partials/icons.njk" import icon %}
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="{{ settings.siteTitle }} home">
+          <img src="/assets/images/logo-light.png" alt="{{ settings.logoAlt or settings.siteTitle }}" width="150" height="30" />
+        </a>
+        <p class="footer-blurb">{{ settings.tagline }}. Delivering efficiency, safety, and sustainability to businesses worldwide.</p>
+        {% if settings.social and settings.social.length %}
+        <ul class="social">
+          {% for s in settings.social %}
+          <li><a href="{{ s.url }}" aria-label="{{ s.platform }}" rel="noopener" target="_blank">{{ icon(s.platform, 18) }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+      {# Visual column labels are <p>, not headings — the last heading before
+         the footer is often several levels shallower than 4 (e.g. an <h2>),
+         so an <h4> here would skip a level in the page's heading outline. A
+         <footer> isn't sectioning content, so its headings share the same
+         flat outline as the rest of the page. #}
+      <div class="footer-col">
+        <p class="footer-col__label">Pages</p>
+        <ul>{% for l in nav.footer.pages %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col__label">Sub Pages</p>
+        <ul>{% for l in nav.footer.subPages %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col__label">Utility Pages</p>
+        <ul>{% for l in nav.footer.utility %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col__label">Contact Us</p>
+        <ul>
+          {% if settings.contact.phone %}<li><a href="tel:{{ settings.contact.phone | replace(' ', '') }}">{{ icon('phone',16) }} {{ settings.contact.phone }}</a></li>{% endif %}
+          {% if settings.contact.email %}<li><a href="mailto:{{ settings.contact.email }}">{{ icon('mail',16) }} {{ settings.contact.email }}</a></li>{% endif %}
+          {% if settings.contact.address %}<li><span>{{ icon('pin',16) }} {{ settings.contact.address }}</span></li>{% endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; {{ year }} {{ settings.siteTitle }} — All rights reserved.</p>
+      <p>Built with Eleventy &amp; Sveltia CMS.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top">{{ icon('arrow-up', 20) }}</button>

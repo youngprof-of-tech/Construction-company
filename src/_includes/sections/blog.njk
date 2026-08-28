@@ -1,0 +1,44 @@
+{% from "partials/icons.njk" import icon %}
+{% set b = home.blog %}
+{% set posts = collections.posts | limit(b.count or 4) %}
+{% if posts.length %}
+<section class="section" id="blog" aria-label="Latest articles">
+  <div class="container">
+    <div class="reveal">
+      {% if b.eyebrow %}<span class="eyebrow">{{ b.eyebrow }}</span>{% endif %}
+      <h2 class="section-heading">{{ b.heading }}</h2>
+    </div>
+
+    <div class="blog__grid" style="margin-top:var(--space-6);">
+      {% set feat = posts[0] %}
+      <article class="post-feature reveal">
+        <a class="post-feature__media" href="{{ feat.url }}">
+          <img src="{{ feat.data.featuredImage }}" alt="{{ feat.data.featuredImageAlt }}" loading="lazy" width="640" height="400" />
+        </a>
+        <div class="post-meta">
+          <span class="post-tag">{{ feat.data.category }}</span>
+          <time datetime="{{ feat.date | htmlDate }}">{{ feat.date | readableDate }}</time>
+        </div>
+        <h3><a href="{{ feat.url }}">{{ feat.data.title }}</a></h3>
+        <p class="post-feature__excerpt">{{ feat.data.excerpt }}</p>
+        <a class="text-link" href="{{ feat.url }}">Read Article {{ icon('arrow-right', 14) }}</a>
+      </article>
+
+      <div class="post-list reveal">
+        {% for post in posts.slice(1) %}
+        <article class="post-row">
+          <a href="{{ post.url }}"><img src="{{ post.data.featuredImage }}" alt="{{ post.data.featuredImageAlt }}" loading="lazy" width="108" height="84" /></a>
+          <div>
+            <div class="post-meta">
+              <span class="post-tag">{{ post.data.category }}</span>
+              <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
+            </div>
+            <h4><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

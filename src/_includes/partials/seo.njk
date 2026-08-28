@@ -1,0 +1,31 @@
+{# SEO meta: title, description, canonical, Open Graph, Twitter Card.
+   Priority: page front-matter `seo.*` -> page title/excerpt -> home defaults -> Site Settings. #}
+{%- set pageSeo = seo or {} -%}
+{%- set metaTitle = pageSeo.title
+      or (title + " — " + settings.siteTitle if title)
+      or (home.seo.title if page.url == "/")
+      or settings.seo.title
+      or settings.siteTitle -%}
+{%- set metaDesc = pageSeo.description
+      or excerpt
+      or (home.seo.description if page.url == "/")
+      or settings.seo.description -%}
+{%- set canonical = page.url | absoluteUrl(settings.url) -%}
+{%- set shareImg = (ogImage or featuredImage or settings.seo.shareImage) | absoluteUrl(settings.url) -%}
+
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDesc }}" />
+<meta name="robots" content="{{ robotsMeta or 'index, follow' }}" />
+<link rel="canonical" href="{{ canonical }}" />
+
+<meta property="og:type" content="{{ ogType or 'website' }}" />
+<meta property="og:site_name" content="{{ settings.siteTitle }}" />
+<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:description" content="{{ metaDesc }}" />
+<meta property="og:url" content="{{ canonical }}" />
+<meta property="og:image" content="{{ shareImg }}" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ metaTitle }}" />
+<meta name="twitter:description" content="{{ metaDesc }}" />
+<meta name="twitter:image" content="{{ shareImg }}" />

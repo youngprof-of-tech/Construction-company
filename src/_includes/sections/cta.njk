@@ -1,0 +1,52 @@
+{% from "partials/icons.njk" import icon %}
+{% set c = home.ctaBanner %}
+<section class="section" id="quote" aria-label="Request a quote">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div class="cta-banner__bg">
+        <img src="{{ c.image }}" alt="{{ c.imageAlt }}" loading="lazy" width="1200" height="480" />
+      </div>
+      <div class="cta-banner__inner">
+        <div>
+          {% if c.eyebrow %}<span class="eyebrow cta-banner__eyebrow">{{ c.eyebrow }}</span>{% endif %}
+          <h2>{{ c.heading }}</h2>
+          {% if c.text %}<p>{{ c.text }}</p>{% endif %}
+        </div>
+
+        {# To go live with Netlify Forms: add data-netlify="true" to this form.
+           The action already points at /thank-you/ — Netlify redirects the
+           browser there on a real submit, which is what makes ad-conversion
+           pixels on that page fire reliably. See README for setup. #}
+        <form class="form form--card" name="quote" method="POST" action="/thank-you/" data-validate novalidate>
+          <input type="hidden" name="form-name" value="quote" />
+          <p class="visually-hidden" aria-hidden="true"><label>Leave blank: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="q-name">Name</label>
+              <input id="q-name" name="name" type="text" placeholder="Your full name" data-required autocomplete="name" />
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="q-email">Email</label>
+              <input id="q-email" name="email" type="email" placeholder="you@company.com" data-required autocomplete="email" />
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="q-service">Service</label>
+            <select id="q-service" name="service" data-required>
+              <option value="">Select a service…</option>
+              {% for opt in c.serviceOptions %}<option value="{{ opt }}">{{ opt }}</option>{% endfor %}
+            </select>
+            <span class="field__error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn--accent" disabled>{{ c.buttonLabel }} <span class="btn__icon">{{ icon('arrow-right', 14) }}</span></button>
+          <p class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

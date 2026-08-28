@@ -1,0 +1,15 @@
+{% set p = home.process %}
+<section class="section" id="process" aria-label="Work process">
+  <div class="container">
+    <h2 class="section-heading reveal" style="font-size:var(--fs-900);max-width:none;">{{ p.heading }}</h2>
+    <div class="process__grid" style="margin-top:var(--space-7);">
+      {% for step in p.steps %}
+      <div class="process-step reveal">
+        <div class="process-step__num">{{ step.number }}</div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

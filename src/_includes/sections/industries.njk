@@ -1,0 +1,26 @@
+{% from "partials/icons.njk" import icon %}
+{% set i = home.industries %}
+<section class="section section--light" id="reach" aria-label="Global reach">
+  <div class="container">
+    <div class="industries__grid">
+      <div class="reveal">
+        {% if i.eyebrow %}<span class="eyebrow">{{ i.eyebrow }}</span>{% endif %}
+        <h2 class="section-heading">{{ i.heading }}</h2>
+        {% if i.officeTitle %}
+        <div class="office-card" style="margin-top:var(--space-5);">
+          <h3 class="office-card__title">{{ icon('pin', 18) }} <span>{{ i.officeTitle }}</span></h3>
+          <p>{{ i.officeText }}</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="industries__map reveal">
+        <img src="{{ i.mapImage }}" alt="{{ i.mapAlt }}" loading="lazy" width="900" height="470" />
+        <div class="industries__stat">
+          <div class="num"><span data-count="{{ i.statValue }}">0</span><span class="suffix">{{ i.statSuffix }}</span></div>
+          <p>{{ i.statLabel }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

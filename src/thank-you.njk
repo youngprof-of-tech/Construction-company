@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: Thank You
+permalink: /thank-you/
+robotsMeta: "noindex, follow"
+seo:
+  description: "Thanks for reaching out to Industryflow — we'll be in touch within one business day."
+---
+{% from "partials/icons.njk" import icon %}
+
+{#
+  This page is the redirect target for every form on the site (see the
+  `action="/thank-you/"` attribute on the quote, contact, and newsletter
+  forms). A real page load here — rather than an inline JS success message —
+  is what lets conversion-tracking pixels fire reliably, which matters the
+  moment you start running paid ads (Google Ads, Meta/Facebook Ads, LinkedIn
+  Ads, etc.). Two conversion snippets are stubbed out below, commented out.
+  Uncomment and fill in your own IDs when you're ready to run ads; leave them
+  out entirely if you aren't.
+#}
+
+<section class="page-hero" style="min-height:56vh;display:grid;align-items:center;">
+  <div class="container" style="text-align:center;">
+    <span class="eyebrow" style="color:var(--color-accent);">Message received</span>
+    <h1 style="font-size:var(--fs-800);">Thank you — we'll be in touch soon.</h1>
+    <p style="color:rgba(255,255,255,0.85);max-width:52ch;margin:var(--space-4) auto var(--space-6);">
+      Your message has reached our team. Expect a reply from a real person
+      within one business day — sooner for urgent projects.
+    </p>
+    <a class="btn btn--accent" href="/">Back to home {{ icon('arrow-right', 14) }}</a>
+  </div>
+</section>
+
+{#
+  ---------------------------------------------------------------------------
+  AD CONVERSION TRACKING — uncomment what you use, drop in your real IDs.
+  Both snippets fire once, on this page's load, which only happens after a
+  genuine form submission (never on a page refresh of the form itself).
+  ---------------------------------------------------------------------------
+
+  Google Ads conversion (requires gtag.js already loaded site-wide — add
+  that base snippet to base.njk's <head> first, then this fires the event):
+
+  <script>
+    gtag('event', 'conversion', {
+      'send_to': 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXX' // replace with your Conversion ID/label
+    });
+  </script>
+
+  Meta (Facebook) Pixel conversion (requires the base Pixel snippet already
+  loaded site-wide in <head>):
+
+  <script>
+    fbq('track', 'Lead');
+  </script>
+  ---------------------------------------------------------------------------
+#}

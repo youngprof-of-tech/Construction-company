@@ -1,0 +1,35 @@
+{% from "partials/icons.njk" import icon %}
+{% set a = home.about %}
+<section class="section" id="about" aria-label="About us">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__media reveal">
+        <img src="{{ a.image }}" alt="{{ a.imageAlt }}" loading="lazy" width="560" height="620" />
+        <div class="about__years">
+          <div class="num" data-count="{{ a.yearsValue }}">0</div>
+          <div class="lbl">{{ a.yearsLabel }}</div>
+        </div>
+      </div>
+
+      <div class="about__text reveal">
+        {% if a.eyebrow %}<span class="eyebrow">{{ a.eyebrow }}</span>{% endif %}
+        <h2 class="section-heading">{{ a.heading }}</h2>
+        <p class="about__body">{{ a.body }}</p>
+        {% if a.ctaLabel %}<a class="btn btn--accent" href="{{ a.ctaUrl }}">{{ a.ctaLabel }} <span class="btn__icon">{{ icon('arrow-right', 14) }}</span></a>{% endif %}
+
+        <div class="mv-cards">
+          <div class="mv-card">
+            <span class="mv-card__icon">{{ icon('target', 20) }}</span>
+            <h3>{{ a.mission.title }}</h3>
+            <p>{{ a.mission.text }}</p>
+          </div>
+          <div class="mv-card">
+            <span class="mv-card__icon">{{ icon('bulb', 20) }}</span>
+            <h3>{{ a.vision.title }}</h3>
+            <p>{{ a.vision.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

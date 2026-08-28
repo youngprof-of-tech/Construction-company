@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+title: Blog
+permalink: /blog/
+seo:
+  description: "Industry insights, project updates, and expert tips from the Industryflow team."
+---
+{% from "partials/icons.njk" import icon %}
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <p class="crumbs"><a href="/">Home</a> &rsaquo; {{ title }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;margin-bottom:var(--space-6);">
+      <span class="eyebrow">{{ home.blog.eyebrow or "Recent News" }}</span>
+      <h2 class="section-heading">Latest Articles</h2>
+    </div>
+
+    {% if collections.posts.length %}
+    <div class="card-grid">
+      {% for post in collections.posts %}
+      <article class="card reveal">
+        <a href="{{ post.url }}"><img src="{{ post.data.featuredImage }}" alt="{{ post.data.featuredImageAlt }}" loading="lazy" width="400" height="250" /></a>
+        <div class="card__body">
+          <div class="post-meta">
+            <span class="post-tag">{{ post.data.category }}</span>
+            <time datetime="{{ post.date | htmlDate }}">{{ post.date | readableDate }}</time>
+          </div>
+          <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+          <p>{{ post.data.excerpt }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No articles yet — check back soon.</p>
+    {% endif %}
+  </div>
+</section>
