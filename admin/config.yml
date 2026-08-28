@@ -8,7 +8,7 @@
 # ---------------------------------------------------------------------------
 backend:
   name: github
-  repo: client-username/repo-name # TODO: set to "owner/repo" of the site's GitHub repo
+  repo: youngprof-of-tech/Construction-company
   branch: main
   # Optional: nicer commit messages in the repo history.
   commit_messages:
@@ -26,8 +26,8 @@ media_folder: "uploads"
 public_folder: "/uploads"
 
 # Show a live preview link in the editor.
-site_url: https://example.netlify.app
-display_url: https://example.netlify.app
+site_url: https://constructiondemolagos.netlify.app
+display_url: https://constructiondemolagos.netlify.app
 logo_url: /assets/images/logo.png
 
 collections:
